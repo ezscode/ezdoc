@@ -19,25 +19,16 @@ quickdoc 是一款文档批量下载、处理工具，旨在让 开发人员 更
 1. 下载文档：根据文档导航栏 xpath 获取子文档链接，爬取。
 2. 保存为 `.md` 文件，使用 html 转 markdown；
 3. 爬取 repo 详细信息，及 readme 文件下载 
-4. 下载微信公众号文章
-
-
+4. 下载微信公众号文章，并转为 markdown 格式；
+5. markdown 拆分解析，参考 [mdsplit](https://github.com/alandefreitas/mdsplit)。
+由于本项目目标是实现 翻译、整理文档，目前没有处理markdown 内容深度关系。
+6. 调用大模型翻译 markdown（代码、图片链接等自动不翻译）。
+这里我使用 [LiteLLM](https://github.com/BerriAI/litellm) + openai 兼容接口 调用大模型接口。教程可参考：<https://ezcode.blog.csdn.net/article/details/142249313>。
 
 ***
+### 我的自动翻译效果
 
-以下功能还需要优化
-
-1. markdown 文档翻译；
-
-   目前使用大模型及 提示词，进行文档翻译；本项目没有完整的大模型适配方法，需要自己配置。
-
-   本人使用兼容 openai 的 大模型接口来调用。
-
-2. markdown 切分
-
-   翻译接口能处理的文档长度有限，需要有效的切分，市面已有很多方式，常见以标题来切分，目前还在探索中。
-
-
+![translation](README.assets/translation.png)
 
 ***
 
@@ -51,8 +42,6 @@ quickdoc 是一款文档批量下载、处理工具，旨在让 开发人员 更
 git clone https://github.com/ezscode/quickdoc.git
 ```
 
-
-
 ***
 
 2、安装依赖
@@ -61,8 +50,6 @@ git clone https://github.com/ezscode/quickdoc.git
 cd quickdoc
 pip install -r requirements.txt
 ```
-
-
 
 ***
 
@@ -117,7 +104,6 @@ def test_doc():
 ```
 
 
-
 ***
 
 ### 4、下载微信文章
@@ -131,7 +117,6 @@ python crawl_wxmp.py https://mp.weixin.qq.com/s/zC6dIEIDS6aRzKJCZU3K5Q  https://
 
 
 ***
-
 ## 欢迎贡献  🤗
 
 项目在使用和建设中，欢迎朋友们一起建设
