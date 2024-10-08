@@ -146,6 +146,16 @@ class QuickDoc(object):
     def translate(self):
         pass 
 
+    # 拼接所有已翻译的文档
+    def concact_translation_files(self):
+
+        files = os.listdir(self.doc_trans_dir) 
+        files.sort()
+        file_paths = [os.path.join(self.doc_trans_dir, file_name) for file_name in files]  
+        save_path = os.path.join(self.domain_dir, f'doc_translations.md') 
+        concact_files(file_paths, save_path) 
+    
+
              
 if __name__ == '__main__':
     

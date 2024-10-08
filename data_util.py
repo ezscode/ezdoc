@@ -128,3 +128,15 @@ def html2md(content_html):
     md_str = md(content_html, heading_style=ATX)  
     return md_str 
 
+# 拼接文件为一个文件
+def concact_files(file_paths, save_path):
+
+    for file_path in file_paths: 
+        if not file_path.endswith('.md') and not file_path.endswith('.txt'):continue
+
+        text = open(file_path).read().strip()  
+
+        with open(save_path, 'a') as fa:
+            fa.write(text + '\n\n***\n\n' ) 
+    
+    print('-- finish concact : ', save_path)  
